@@ -1,0 +1,79 @@
+---
+#    ___      ___                 _         
+#   / _/_ _  / _/__  ___ _______ (_)______ _
+#  / _/  ' \/ _/ _ \/ -_) __/ -_) / __/ _ `/
+# /_//_/_/_/_// .__/\__/_/  \__/_/_/  \_,_/ 
+#            /_/         
+# debian spectrwm setup handlers.
+
+- name: Set default git user name
+  command: 'git config --global user.name {{ git.user_name }}'
+
+- name: Set default git user mail
+  command: 'git config --global user.mail {{ git.user_mail }}'
+
+- name: Print default git user
+  debug:
+    msg: "Default git user.name: {{ git.user_name }} and user.mail: {{ git.user_mail }}"
+
+- name: Copy spectrwm.conf file
+  copy:
+    src: 'spectrwm'
+    dest: '~/.config/'
+
+- name: Copy .Xresources file
+  copy:
+    src: 'Xresources'
+    dest: '~/.Xresources'
+
+- name: Copy .xsessionrc file
+  copy:
+    src: 'xsessionrc'
+    dest: '~/.xsessionrc'
+
+- name: Copy rofi theme
+  copy:
+    src: 'rofi'
+    dest: '~/.config/'
+
+- name: Copy gtk settings
+  copy:
+    src: 'gtk-3.0'
+    dest: '~/.config/'
+
+- name: Install Ubuntu Mono nerd font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
+    dest: /usr/local/share/fonts
+    remote_src: yes
+    mode: 0644
+  become: yes
+
+- name: Install Mononoki nerd font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Mononoki.zip
+    dest: /usr/local/share/fonts
+    remote_src: yes
+    mode: 0644
+  become: yes
+
+- name: Install Hasklug nerd font
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
+    dest: /usr/local/share/fonts
+    remote_src: yes
+    mode: 0644
+  become: yes
+
+- name: Update PATH environment variable
+  blockinfile:
+    path: ~/.profile
+    marker: "{mark} ANSIBLE MANAGED BLOCK | {{ item }} PATH"
+    marker_begin: '\n# BEGIN'
+    marker_end: '# END'
+    block: |
+      # set PATH so it includes {{ item }} if it exists
+      if [ -d "$HOME/{{ item }}" ] ; then
+          PATH="$HOME/{{ item }}:$PATH"
+      fi
+  loop: "{{ profile.path }}"

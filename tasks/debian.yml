@@ -1,0 +1,29 @@
+---
+#    ___      ___                 _         
+#   / _/_ _  / _/__  ___ _______ (_)______ _
+#  / _/  ' \/ _/ _ \/ -_) __/ -_) / __/ _ `/
+# /_//_/_/_/_// .__/\__/_/  \__/_/_/  \_,_/ 
+#            /_/         
+# debian spectrwm setup.
+
+- name: Install base software
+  apt:
+    name:
+      - alsa-utils
+      - curl
+      - firmware-linux
+      - firmware-linux-nonfree
+      - imagemagick
+      - locate
+      - mesa-utils
+      - nvidia-detect
+      - pavucontrol
+      - pulseaudio
+      - unzip
+      - xinit
+      - xorg
+      - xserver-xorg
+      - xutils
+    state: present
+  become: yes
+  notify: Update PATH environment variable

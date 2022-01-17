@@ -1,0 +1,58 @@
+---
+#    ___      ___                 _         
+#   / _/_ _  / _/__  ___ _______ (_)______ _
+#  / _/  ' \/ _/ _ \/ -_) __/ -_) / __/ _ `/
+# /_//_/_/_/_// .__/\__/_/  \__/_/_/  \_,_/ 
+#            /_/         
+# debian spectrwm spectrwm setup.
+
+- name: Install spectrwm and dependencies
+  apt:
+    name:
+      - breeze-gtk-theme
+      - fonts-font-awesome
+      - fonts-inconsolata
+      - i3lock
+      - lightdm
+      - lxappearance
+      - nitrogen
+      - rofi
+      - rxvt-unicode
+      - slick-greeter
+      - spectrwm
+      - xautolock
+    state: present
+  become: yes
+  notify:
+    - Copy .Xresources file
+    - Copy .xsessionrc file
+    - Copy gtk settings
+    - Copy rofi theme
+    - Copy spectrwm.conf file
+    - Install Hasklug nerd font
+    - Install Mononoki nerd font
+    - Install Ubuntu Mono nerd font
+
+- name: Install base software
+  apt:
+    name:
+      - chromium
+      - firefox-esr
+      - keepassxc
+      - mousepad
+      - thunar
+    state: present
+  become: yes
+
+- name: Copy local scripts folder
+  copy:
+    src: 'Scripts'
+    dest: '~/'
+    mode: 0755
+    
+- name: Copy blurlock script
+  copy:
+    src: 'blurlock.sh'
+    dest: '/usr/local/bin/blurlock'
+    mode: 0755
+  become: yes

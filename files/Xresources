@@ -1,0 +1,58 @@
+!    ___      ___                 _         
+!   / _/_ _  / _/__  ___ _______ (_)______ _
+!  / _/  ' \/ _/ _ \/ -_) __/ -_) / __/ _ `/
+! /_//_/_/_/_// .__/\__/_/  \__/_/_/  \_,_/ 
+!            /_/         
+! debian spectrwm Xresources settings.
+
+Xft.dpi:                          96
+Xft.antialias:                    true
+Xft.hinting:                      true
+Xft.rgba:                         rgb
+Xft.autohint:                     false
+Xft.hintstyle:                    hintslight
+Xft.lcdfilter:                    lcddefault
+
+! special
+*.foreground:                     #7ea2b4
+*.background:                     #161b1d
+*.cursorColor:                    #7ea2b4
+! black
+*.color0:                         #161b1d
+*.color8:                         #5a7b8c
+! red
+*.color1:                         #c70000
+*.color9:                         #c70000
+! green
+*.color2:                         #568c3b
+*.color10:                        #568c3b
+! yellow
+*.color3:                         #8a8a0f
+*.color11:                        #8a8a0f
+! blue
+*.color4:                         #257fad
+*.color12:                        #257fad
+! magenta
+*.color5:                         #5d5db1
+*.color13:                        #5d5db1
+! cyan
+*.color6:                         #2d8f6f
+*.color14:                        #2d8f6f
+! white
+*.color7:                         #7ea2b4
+*.color15:                        #7ea2b4
+
+URxvt.font:                       xft:Hasklug Nerd Font:pixelsize=14
+URxvt.depth:                      32
+URxvt*scrollBar:                  false
+URxvt*mouseWheelScrollPage:       false
+URxvt*cursorBlink:                true
+URxvt*background:                 black
+URxvt*foreground:                 grey
+URxvt*saveLines:                  5000
+URxvt*loginShell:                 true
+
+! for 'fake' transparency (without Compton) uncomment the following three lines
+URxvt*inheritPixmap:              true
+URxvt*transparent:                true
+URxvt*shading:                    15

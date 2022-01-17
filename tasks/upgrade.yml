@@ -1,0 +1,22 @@
+---
+#    ___      ___                 _         
+#   / _/_ _  / _/__  ___ _______ (_)______ _
+#  / _/  ' \/ _/ _ \/ -_) __/ -_) / __/ _ `/
+# /_//_/_/_/_// .__/\__/_/  \__/_/_/  \_,_/ 
+#            /_/         
+# debian spectrwm update/upgrade setup.
+
+- name: Add non-free and contrib repositories
+  ansible.builtin.replace:
+    path: /etc/apt/sources.list
+    regexp: ' main$'
+    replace: ' main contrib non-free'
+  become: yes
+
+- name: Full system upgrade
+  apt:
+    update_cache: yes
+    upgrade: yes
+  become: yes
+
+
