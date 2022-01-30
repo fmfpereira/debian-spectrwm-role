@@ -16,6 +16,7 @@
       - lightdm
       - lxappearance
       - nitrogen
+      - papirus-icon-theme
       - rofi
       - rxvt-unicode
       - slick-greeter

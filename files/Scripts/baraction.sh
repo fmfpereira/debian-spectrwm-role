@@ -24,7 +24,7 @@ hdd() {
   else
     color="+@fg=0;"
   fi 
-  echo -e "$color $hdd_percentage% [$hdd]"
+  echo -e "$color $hdd_percentage% [$hdd] "
 }
 
 # MEMORY
@@ -39,7 +39,7 @@ mem() {
   else
     color="+@fg=0;"
   fi
-  echo -e "$color $mem_percentage% [$mem]"
+  echo -e "$color $mem_percentage% [$mem] "
 }
 
 # CPU
@@ -58,7 +58,7 @@ cpu() {
   else
     color="+@fg=0;"
   fi
-  echo -e "$color $cpu%"
+  echo -e "$color $cpu% "
 }
 
 # BATERY
@@ -82,14 +82,14 @@ bat() {
         color="+@fg=0;"
         icon=""
       fi
-      echo -e "$color$icon  $capacity% [$status]"
+      echo -e "$color$icon  $capacity% [$status] "
     fi
   fi
 }
 
 # WIRELESS
 wifi() {
-  ssid=$(iwgetid --raw)
+  ssid=$(/usr/sbin/iwgetid --raw)
   if [ -n "$ssid" ]; then
     strength="$(cat /proc/net/wireless | awk 'NR==3 {printf "%d", $3}')"
     # COMPUTE THE COLORS
@@ -100,7 +100,7 @@ wifi() {
     else
       color="+@fg=0;"
     fi
-    echo -e "$color $strength% [$ssid]"
+    echo -e "$color $strength% [$ssid] "
   fi
 }
 
@@ -119,10 +119,17 @@ vol() {
   else
     icon=""
   fi
-  echo -e "$icon $vol%"
+  echo -e "$icon $vol% "
+}
+
+# UPDATES
+updates() {
+  updates=$(apt-get dist-upgrade -s --quiet=2 | grep ^Inst | wc -l)
+  icon="ﮮ"
+  echo -e "$icon $updates "
 }
 
 while :; do
-  echo "$(vol)+@fg=0;  +@fg=0;$(cpu)+@fg=0;  $(mem)+@fg=0;  $(hdd)+@fg=0;  $(bat)+@fg=0;  $(wifi)+@fg=0;"
+  echo "$(vol)+@fg=0;$(cpu)+@fg=0;$(mem)+@fg=0;$(hdd)+@fg=0;$(wifi)+@fg=0;$(updates)+@fg=0;$(bat)"
 	sleep $SLEEP_SEC
 done

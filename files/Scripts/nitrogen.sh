@@ -10,6 +10,7 @@
 
 IMAGES_PATH=~/.config/nitrogen/backgrounds
 UNSPLASH_URL=https://source.unsplash.com/random/1920x1080/?background,landscape,space,technology,retro
+SLEEP_CURL=5
 SLEEP_SEC=3600
 
 # --- SCRIPT START
@@ -17,8 +18,6 @@ SLEEP_SEC=3600
 # CHECK IF PATH EXIST AND IS EMPTY
 if [ ! -d "$IMAGES_PATH" ]; then
   mkdir -p $IMAGES_PATH
-elif [ "$(ls -A $IMAGES_PATH)" ]; then
-  rm -r "$IMAGES_PATH"/*
 fi
 
 # GET THE NUMBER OF DISPLAYS
@@ -29,6 +28,8 @@ while :; do
   ## ITERATE OVER DISPLAYS
   for (( COUNT = 1; COUNT <= $NUMBER_DISPLAYS; COUNT++ )) 
   do
+    # SLEEP BEFORE EXECUTING CURL
+    sleep $SLEEP_CURL
     # SET THE TARGET FILE NAME BASED ON THE DISPLAY COUNT
     TARGET_FILE=$IMAGES_PATH/screen_$COUNT
     # GET A RANDOM IMAGE
