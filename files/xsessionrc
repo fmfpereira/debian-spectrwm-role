@@ -15,18 +15,18 @@ fi
 xautolock -time 10 -locker blurlock &
 
 # AUTORUN SCREEN LAYOUT SCRIPT
-if [ -f ~/Scripts/screen-layout.sh ]; then
-  bash ~/Scripts/screen-layout.sh &
+if [ -f ~/Scripts/screen-layout ]; then
+  bash ~/Scripts/screen-layout &
 fi
 
 # AUTORUN NITROGEN SCRIPT
-if [ -f ~/Scripts/nitrogen.sh ]; then
+if [ -f ~/Scripts/nitrogen-update ]; then
   # GET PID OF EXISTING PROCESS
-  pid=$(pidof --single-shot nitrogen.sh)
+  pid=$(pidof --single-shot nitrogen-update)
   # EXECUTE IF PROCESS IS NOT RUNNING
   if [ -z $pid]; then
     # WAIT BEFORE EXECUTING THE SCRIPT
     sleep 2
-    bash ~/Scripts/nitrogen.sh &
+    bash ~/Scripts/nitrogen-update &
   fi
 fi

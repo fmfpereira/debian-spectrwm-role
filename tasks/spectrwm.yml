@@ -53,7 +53,7 @@
     
 - name: Copy blurlock script
   copy:
-    src: 'blurlock.sh'
+    src: 'blurlock'
     dest: '/usr/local/bin/blurlock'
     mode: 0755
   become: yes
