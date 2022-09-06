@@ -19,6 +19,9 @@ if [ -f ~/Scripts/screen-layout ]; then
   bash ~/Scripts/screen-layout &
 fi
 
+# AUTORUN XCOMPOSE
+setxkbmap -option "compose:ralt"
+
 # AUTORUN NITROGEN SCRIPT
 if [ -f ~/Scripts/nitrogen-update ]; then
   # GET PID OF EXISTING PROCESS

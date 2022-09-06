@@ -7,13 +7,13 @@
 # debian spectrwm setup handlers.
 
 - name: Set default git user name
-  command: 'git config --global user.name {{ git.user_name }}'
+  ansible.builtin.command: 'git config --global user.name {{ git.user_name }}'
 
 - name: Set default git user mail
-  command: 'git config --global user.mail {{ git.user_mail }}'
+  ansible.builtin.command: 'git config --global user.mail {{ git.user_mail }}'
 
 - name: Print default git user
-  debug:
+  ansible.builtin.debug:
     msg: "Default git user.name: {{ git.user_name }} and user.mail: {{ git.user_mail }}"
 
 - name: Copy spectrwm.conf file
@@ -27,22 +27,22 @@
     dest: '~/.Xresources'
 
 - name: Copy .xsessionrc file
-  copy:
+  ansible.builtin.copy:
     src: 'xsessionrc'
     dest: '~/.xsessionrc'
 
 - name: Copy rofi theme
-  copy:
+  ansible.builtin.copy:
     src: 'rofi'
     dest: '~/.config/'
 
 - name: Copy gtk settings
-  copy:
+  ansible.builtin.copy:
     src: 'gtk-3.0'
     dest: '~/.config/'
 
 - name: Install Ubuntu Mono nerd font
-  unarchive:
+  ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/UbuntuMono.zip
     dest: /usr/local/share/fonts
     remote_src: yes
@@ -50,7 +50,7 @@
   become: yes
 
 - name: Install Mononoki nerd font
-  unarchive:
+  ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Mononoki.zip
     dest: /usr/local/share/fonts
     remote_src: yes
@@ -58,7 +58,7 @@
   become: yes
 
 - name: Install Hasklug nerd font
-  unarchive:
+  ansible.builtin.unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hasklig.zip
     dest: /usr/local/share/fonts
     remote_src: yes
@@ -66,7 +66,7 @@
   become: yes
 
 - name: Update PATH environment variable
-  blockinfile:
+  ansible.builtin.blockinfile:
     path: ~/.profile
     marker: "{mark} ANSIBLE MANAGED BLOCK | {{ item }} PATH"
     marker_begin: '\n# BEGIN'

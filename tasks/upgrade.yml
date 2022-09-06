@@ -13,8 +13,15 @@
     replace: ' main contrib non-free'
   become: yes
 
+- name: Add google chrome PPA
+  ansible.builtin.apt_repository:
+    repo: deb https://dl.google.com/linux/chrome/deb/ stable main
+    state: present
+    filename: google-chrome
+  become: yes
+
 - name: Full system upgrade
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     upgrade: yes
   become: yes

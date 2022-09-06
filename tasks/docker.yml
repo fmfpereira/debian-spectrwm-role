@@ -7,7 +7,7 @@
 # debian spectrwm docker setup.
 
 - name: Install docker
-  apt:
+  ansible.builtin.apt:
     name:
       - docker
       - docker-compose
@@ -15,14 +15,14 @@
   become: yes
 
 - name: Add current user to the docker group
-  user:
+  ansible.builtin.user:
     name: "{{ lookup('env', 'USER') }}"
     groups: docker
     append: yes
   become: yes
   
 - name: Restart docker service
-  service:
+  ansible.builtin.service:
     name: docker
     state: restarted
   become: yes

@@ -7,18 +7,20 @@
 # debian spectrwm setup.
 
 - name: Install base software
-  apt:
+  ansible.builtin.apt:
     name:
       - alsa-utils
       - curl
       - firmware-linux
       - firmware-linux-nonfree
+      - gimp
       - imagemagick
       - locate
       - mesa-utils
       - nvidia-detect
       - pavucontrol
       - pulseaudio
+      - rsync
       - unzip
       - xinit
       - xorg

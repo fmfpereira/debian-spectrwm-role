@@ -7,11 +7,14 @@
 # debian spectrwm spectrwm setup.
 
 - name: Install spectrwm and dependencies
-  apt:
+  ansible.builtin.apt:
     name:
+      - breeze-cursor-theme
       - breeze-gtk-theme
       - fonts-font-awesome
       - fonts-inconsolata
+      - fonts-noto-core
+      - fonts-noto-mono
       - i3lock
       - lightdm
       - lxappearance
@@ -35,7 +38,7 @@
     - Install Ubuntu Mono nerd font
 
 - name: Install base software
-  apt:
+  ansible.builtin.apt:
     name:
       - chromium
       - firefox-esr
@@ -46,13 +49,13 @@
   become: yes
 
 - name: Copy local scripts folder
-  copy:
+  ansible.builtin.copy:
     src: 'Scripts'
     dest: '~/'
     mode: 0755
     
 - name: Copy blurlock script
-  copy:
+  ansible.builtin.copy:
     src: 'blurlock'
     dest: '/usr/local/bin/blurlock'
     mode: 0755

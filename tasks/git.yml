@@ -7,7 +7,7 @@
 # debian spectrwm git setup.
 
 - name: Install git
-  apt:
+  ansible.builtin.apt:
     name: git
     state: present
   become: yes
